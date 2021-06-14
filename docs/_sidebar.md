@@ -1,4 +1,4 @@
-* [首页](/)
+* [前言](readme)
 * JavaScript基础
     * [手写代码](01_base/custom/)
     * [TypeScript](01_base/ts/)

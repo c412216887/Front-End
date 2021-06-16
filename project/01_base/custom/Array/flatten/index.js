@@ -29,6 +29,8 @@ const arr2 = [temp1, [temp2], ];
     const result2_2 = arr2.flat(2);
     // => [ { a: '111' }, { b: [Function: b] } ]
     // console.log(result2_2)
+    const result3 = arr.flat(Infinity);
+    console.log(result3)
 })();
 
 

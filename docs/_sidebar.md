@@ -1,6 +1,6 @@
-* [前言](readme)
+* [前言](README)
 * JavaScript基础
-    * [手写代码](01_base/custom/)
+    * [手写代码](custom/)
     * [TypeScript](01_base/ts/)
 * JavaScript工程化
     * [手写cli](02_engine/cli/)

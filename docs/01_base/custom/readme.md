@@ -12,14 +12,42 @@ const arr = [1, [2, [3, [4, 5]]], 6];
 
 1. 使用Array.prototype.flat()
 
-   > flat()会按照
+   > flat()会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新的数组返回
+
+   使用flat可以根据传进来的depth，将数据扁平化。如果数组中包含方法，也不会产生数据丢失。
+
+   ```js
+   arr.flat(3)
+   ```
+
+   
 
 2. 利用正则
 
    > 将数组转换成JSON字符串，然后使用replace()将[]替换为""
 
+   将数组通过JSON.stringify()转为字符串，然后利用replace()函数将数组中的[]替换为“”，最后使用split(",")，将字符串还原为数组。但是，如果数组中包含方法，则该方法会全部丢失
+
+   ```js
+   JSON.stringify(arr).replace(/(\[+)|(\]+)/g, "").split(",")
+   ```
+
+   
+
 3. 使用Array.prototype.reduce()
-4. 函数递归
+
+   > reduce : 对数组中的每一个元素依次执行reduce回调函数，将结果汇总为单个返回值
+
+```js
+function fn(arr) {
+    return arr.reduce((a, b) => {
+       return a.concat(Array.isArray(b) ? fn(b) : b) 
+    }, [])
+}
+fn(arr);
+```
+
+
 
 ## 数组去重
 

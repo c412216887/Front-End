@@ -3,73 +3,71 @@
  * [2021/6/14]
  */ 
 
-// 测试用例
-const arr = [1, 1, '1', 17, true, true, false, false, 'true', 'a', {}, []];
-// => [1, '1', 17, true, false, 'true', 'a', {}, []]
-
 /**
  * 方法一 : 采用Set方法
  */
-(function(arr) {
+exports.fn1 = function (arr: any[]) {
     const set = new Set(arr);
     const newArr = Array.from(set);
-    // console.log(newArr);
-})(arr);
+    return newArr;
+};
 
 /**
  * 方法二 : 两层for循环
  */
-(function(arr) {
-    let len = arr.length;
+exports.fn2 = function(arr: any[]) {
+    // 为了不污染测试数据，将数据浅拷贝一份
+    const newArr = Array.from(arr);
+    let len = newArr.length;
     for (let i = 0 ; i < len; i++) {
         for (let j = len; j > i; j--) {
-            if (arr[j] === arr[i]) {
-                arr.splice(j, 1);
+            if (newArr[j] === newArr[i]) {
+                newArr.splice(j, 1);
                 len--;
             }
         }        
     }
-    // console.log(arr);
-})(arr);
+    return newArr;
+};
 
 /**
  * 方法三 : 利用indexOf
  */
-(function(arr) {
+exports.fn3 = function(arr: any[]) {
     const newArr = [];
     for (let i = arr.length - 1; i >= 0; i-- ) {
         if (newArr.indexOf(arr[i]) === -1) {
             newArr.unshift(arr[i])
         }
     }
-    // console.log(newArr)
-})(arr);
+    return newArr;
+};
 
 /**
  * 方法四 : 利用include
  */
-(function(arr) {
-    const newArr = [];
+exports.fn4_1 = function(arr: any[]) {
+    const newArr: any[] = [];
     for (let i = arr.length - 1; i >= 0; i--) {
         if (!newArr.includes(arr[i])) {
             newArr.unshift(arr[i]);
         }
     }
-    // console.log(newArr);
-})(arr);
-(function(arr) {
-    const newArr = [];
+    return newArr;
+};
+exports.fn4_2 = function(arr: any[]) {
+    const newArr: any[] = [];
     arr.forEach(item => {
         newArr.includes(item) || newArr.push(item)
     })
-    console.log(newArr);
-})(arr);
+    return newArr;
+};
 /**
  * 方法五 : 利用filter
  */
-(function(arr) {
+exports.fn5 = function(arr: unknown[]) {
     const newArr = arr.filter((a, index, arr) => {
         return arr.lastIndexOf(a) === index;
-    });
-    // console.log(newArr);
-})(arr);
+    }) as unknown[];
+    return newArr;
+};
